@@ -43,11 +43,21 @@ class Pages_ctrl extends CI_Controller
             Bitcodin::setApiToken($this->session->api_key);
             $encodingProfiles = EncodingProfile::getListAll();
             if(count($encodingProfiles) <= 0)
+            {
+                $encProf = new \stdClass();
+                $encProf->encodingProfileId = 0;
+                $encProf->name = "No encoding profile available";
                 $encodingProfiles[] = array("No encoding profiles found");
+            }
 
             $outputs = Output::getListAll();
             if(count($outputs) <= 0)
-                $outputs = array("No outputs found");
+            {
+                $output = new \stdClass();
+                $output->outputId = 0;
+                $output->name = "No output available";
+                $outputs = array($output);
+            }
 
             $data['encodingProfiles'] = $encodingProfiles;
             $data['outputs'] = $outputs;

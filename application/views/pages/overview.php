@@ -54,6 +54,16 @@
             var encProfId = $("#encProfSelect").val();
             var outputId = $("#outputSelect").val();
 
+            if(label == "") {
+                label = "livestream";
+            }
+            if(streamkey == ""){
+                streamkey = "stream";
+            }
+            if(timeshift == ""){
+                streamkey = 30;
+            }
+
             $.ajax({
                 type: 'POST',
                 url: '<?php echo site_url("livestream-ctrl/create"); ?>/' + label + '/' + streamkey + '/' + encProfId + '/' + outputId + '/' + timeshift,
