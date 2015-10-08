@@ -61,7 +61,7 @@
                 streamkey = "stream";
             }
             if(timeshift == ""){
-                streamkey = 30;
+                timeshift = 30;
             }
 
             $.ajax({
