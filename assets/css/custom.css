@@ -1,0 +1,44 @@
+/*
+*   CSS settings
+*/
+
+.footer {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.top-buffer {
+    margin-top:20px;
+}
+
+#ajax-loader img{
+    margin: 0 auto;
+}
+
+#copy-button{
+    float: left;
+    margin-top: -20px;
+    margin-left: -20px;
+    color: white;
+    border: 2px solid blue;
+    background-color: transparent;
+}
+
+#ffmpeg-command{
+    background-color: black;
+    color: white;
+    font-family: "Courier", monospace;
+    padding: 20px;
+    overflow: auto;
+}
+
+.horizontal-line {
+    border-top: 1px solid gainsboro;
+}
+/*
+*   Bootstrap Settings
+*/
+
+.navbar-brand {
+    padding: 0;
+}
