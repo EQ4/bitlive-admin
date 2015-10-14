@@ -1,0 +1,10 @@
+{
+	"repositories": [{
+	  "type": "git",
+	  "url": "https://github.com/bitmovin/bitcodin-php.git"
+	}],
+	"require": {
+	  "bitmovin/bitcodin-php": "dev-master",
+	  "php": ">=5.3.0"
+	}
+}
