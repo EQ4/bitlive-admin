@@ -2,6 +2,7 @@
 
 use bitcodin\Bitcodin;
 use bitcodin\EncodingProfile;
+use bitcodin\exceptions\BitcodinException;
 use bitcodin\Output;
 
 class Pages_ctrl extends CI_Controller
@@ -41,22 +42,37 @@ class Pages_ctrl extends CI_Controller
         if($page == 'overview')
         {
             Bitcodin::setApiToken($this->session->api_key);
-            $encodingProfiles = EncodingProfile::getListAll();
-            if(count($encodingProfiles) <= 0)
+            try
             {
-                $encProf = new \stdClass();
-                $encProf->encodingProfileId = 0;
-                $encProf->name = "No encoding profile available";
-                $encodingProfiles[] = array("No encoding profiles found");
-            }
+                $encodingProfiles = EncodingProfile::getListAll();
+                if (count($encodingProfiles) <= 0)
+                {
+                    $encProf = new \stdClass();
+                    $encProf->encodingProfileId = 0;
+                    $encProf->name = "No encoding profile available";
+                    $encodingProfiles = array("No encoding profiles found");
+                }
 
-            $outputs = Output::getListAll();
-            if(count($outputs) <= 0)
+                $outputs = Output::getListAll();
+                if (count($outputs) <= 0)
+                {
+                    $output = new \stdClass();
+                    $output->outputId = 0;
+                    $output->name = "No output available";
+                    $outputs = array($output);
+                }
+            }
+            catch(BitcodinException $ex)
             {
                 $output = new \stdClass();
                 $output->outputId = 0;
                 $output->name = "No output available";
                 $outputs = array($output);
+
+                $encProf = new \stdClass();
+                $encProf->encodingProfileId = 0;
+                $encProf->name = "No encoding profile available";
+                $encodingProfiles = array($encProf);
             }
 
             $data['encodingProfiles'] = $encodingProfiles;
